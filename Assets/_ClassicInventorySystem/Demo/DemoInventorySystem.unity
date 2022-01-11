@@ -373,9 +373,9 @@ RectTransform:
   m_Father: {fileID: 749435039}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -960, y: -540}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &436251724
@@ -428,7 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d1c9c5f8a660ed25ae87dc7fe1c0e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasRectTransform: {fileID: 749435039}
+  canvas: {fileID: 749435038}
 --- !u!1 &490961954
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,7 +786,7 @@ Canvas:
   m_GameObject: {fileID: 749435035}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 2102247267}
   m_PlaneDistance: 1
   m_PixelPerfect: 0
