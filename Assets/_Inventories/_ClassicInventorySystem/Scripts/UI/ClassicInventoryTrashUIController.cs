@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Axvemi.ClassicInventory
+namespace Axvemi.Inventories.ClassicInventory
 {
-    public class InventoryTrashUIController : MonoBehaviour
+    public class ClassicInventoryTrashUIController : MonoBehaviour
     {
-        [SerializeField] private InventoryCursorController cursorController = null;
+        [SerializeField] private ClassicInventoryCursorController cursorController = null;
         private void Start() {
             GetComponent<Button>().onClick.AddListener(OnClickTrash);
         }

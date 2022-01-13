@@ -1,21 +1,21 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Axvemi.ClassicInventory
+namespace Axvemi.Inventories.ClassicInventory
 {
     /// <summary>
     /// Show the cursor slot
     /// </summary>
-    public class InventoryCursorUIController : MonoBehaviour
+    public class ClassicInventoryCursorUIController : MonoBehaviour
     {
         [SerializeField] private GameObject inventoryCursorUIParent = null;
         [Header("UI")]
         [SerializeField] private Image itemImage = null;
 
-        private InventoryCursorController cursorController = null;
+        private ClassicInventoryCursorController cursorController = null;
 
         private void Start() {
-            cursorController = GetComponent<InventoryCursorController>();
+            cursorController = GetComponent<ClassicInventoryCursorController>();
             cursorController.Slot.onSlotItemUpdated += OnCursorSlotItemUpdated;
             inventoryCursorUIParent.SetActive(false);
         }

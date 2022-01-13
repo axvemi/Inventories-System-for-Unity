@@ -1,18 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Axvemi.ClassicInventory
+namespace Axvemi.Inventories.ClassicInventory
 {
-    public class InventoryUIController : MonoBehaviour
+    public class ClassicInventoryUIController : MonoBehaviour
     {
-        private Inventory<InventorySlot> inventory = null;
-        public Inventory<InventorySlot> Inventory { get => inventory; set => inventory = value; }
+        private Inventory<ClassicInventorySlot> inventory = null;
+        public Inventory<ClassicInventorySlot> Inventory { get => inventory; set => inventory = value; }
 
         [SerializeField] private GameObject inventorySlotPrefab = null;
         [Header("UI")]
         [SerializeField] private Transform slotsContainer = null;
 
-        private List<InventorySlotUIController> inventorySlotControllerList = new List<InventorySlotUIController>();
+        private List<ClassicInventorySlotUIController> inventorySlotControllerList = new List<ClassicInventorySlotUIController>();
 
         #region MONOBEHAVIOUR
         private void Start() {
@@ -23,7 +23,7 @@ namespace Axvemi.ClassicInventory
         private void CreateInventorySlots(){
             for (int i = 0; i < inventory.Slots.Count; i++)
             {
-                InventorySlotUIController inventorySlotUIInstance = Instantiate(inventorySlotPrefab, slotsContainer).GetComponent<InventorySlotUIController>();
+                ClassicInventorySlotUIController inventorySlotUIInstance = Instantiate(inventorySlotPrefab, slotsContainer).GetComponent<ClassicInventorySlotUIController>();
                 inventorySlotUIInstance.Slot = inventory.Slots[i];
                 inventorySlotControllerList.Add(inventorySlotUIInstance);
             }

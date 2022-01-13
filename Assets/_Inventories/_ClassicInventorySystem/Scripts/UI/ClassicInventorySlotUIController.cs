@@ -2,15 +2,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace Axvemi.ClassicInventory
+namespace Axvemi.Inventories.ClassicInventory
 {
     /// <summary>
     /// Controls a inventory slot
     /// </summary>
-    public class InventorySlotUIController : MonoBehaviour
+    public class ClassicInventorySlotUIController : MonoBehaviour
     {
-        private InventorySlot slot = null;
-        public InventorySlot Slot { get => slot; set => slot = value; }
+        private ClassicInventorySlot slot = null;
+        public ClassicInventorySlot Slot { get => slot; set => slot = value; }
 
         private void Update() {
             ShowSlot();

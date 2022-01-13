@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Axvemi.ClassicInventory
+namespace Axvemi.Inventories
 {
     [CreateAssetMenu(fileName = "InventoryItemSO", menuName = "Axvemi/Inventory/Inventory Item")]
     public class InventoryItemSO : ScriptableObject

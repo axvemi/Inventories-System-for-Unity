@@ -3,14 +3,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-namespace Axvemi.ClassicInventory
+namespace Axvemi.Inventories.ClassicInventory
 {
-    public class InventoryCursorController : MonoBehaviour
+    public class ClassicInventoryCursorController : MonoBehaviour
     {
         [SerializeField] private PlayerInput playerInput = null;
-        [SerializeField] private InventoryMoveAmmountUIController moveAmmountUIController = null;
-        private InventorySlot slot = new InventorySlot();
-        public InventorySlot Slot { get => slot; set => slot = value; }
+        [SerializeField] private ClassicInventoryMoveAmmountUIController moveAmmountUIController = null;
+        private ClassicInventorySlot slot = new ClassicInventorySlot();
+        public ClassicInventorySlot Slot { get => slot; set => slot = value; }
         private InputAction clickInputAction;
 
 
@@ -28,9 +28,10 @@ namespace Axvemi.ClassicInventory
 
         #region INPUT
         private void OnClickPerformed(InputAction.CallbackContext context){
-            InventorySlot hoverSlot = GetSlotAtMousePosition(Mouse.current.position.ReadValue());
+            ClassicInventorySlot hoverSlot = GetSlotAtMousePosition(Mouse.current.position.ReadValue());
             if(hoverSlot == null) return;
 
+            moveAmmountUIController.gameObject.SetActive(false);
             //Move x ammount dialog
             if(Keyboard.current.leftShiftKey.isPressed == true){
                 //From hover slot to cursor
@@ -68,7 +69,7 @@ namespace Axvemi.ClassicInventory
         /// </summary>
         /// <param name="position">Position in the canvas</param>
         /// <returns>Inventory Slot</returns>
-        private InventorySlot GetSlotAtMousePosition(Vector2 position) {
+        private ClassicInventorySlot GetSlotAtMousePosition(Vector2 position) {
             PointerEventData pointerEventData = new PointerEventData(null);
             pointerEventData.position = position;
             //Debug.Log("Position: " + pointerEventData.position);
@@ -77,7 +78,7 @@ namespace Axvemi.ClassicInventory
             EventSystem.current.RaycastAll(pointerEventData, raycastResults);
 
             foreach(RaycastResult result in raycastResults) {
-                InventorySlotUIController slotUIController = result.gameObject.GetComponent<InventorySlotUIController>();
+                ClassicInventorySlotUIController slotUIController = result.gameObject.GetComponent<ClassicInventorySlotUIController>();
                 if(slotUIController != null) {
                     return slotUIController.Slot;
                 }

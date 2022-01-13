@@ -2,9 +2,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-namespace Axvemi.ClassicInventory
+namespace Axvemi.Inventories.ClassicInventory
 {
-    public class InventoryMoveAmmountUIController : MonoBehaviour
+    public class ClassicInventoryMoveAmmountUIController : MonoBehaviour
     {
 
         [Header("UI")]
@@ -14,8 +14,8 @@ namespace Axvemi.ClassicInventory
 
         private int ammountToTranfer = 0;
 
-        private InventorySlot originSlot = null;
-        private InventorySlot targetSlot = null;
+        private ClassicInventorySlot originSlot = null;
+        private ClassicInventorySlot targetSlot = null;
 
         #region MONOBEHAVIOUR
         private void Awake() {
@@ -26,7 +26,7 @@ namespace Axvemi.ClassicInventory
         
         #endregion
 
-        public void SetupMoveAmmount(InventorySlot originSlot, InventorySlot targetSlot){
+        public void SetupMoveAmmount(ClassicInventorySlot originSlot, ClassicInventorySlot targetSlot){
             this.gameObject.SetActive(true);
             this.originSlot = originSlot;
             this.targetSlot = targetSlot;

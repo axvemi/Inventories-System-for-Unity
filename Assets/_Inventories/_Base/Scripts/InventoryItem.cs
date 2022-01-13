@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Axvemi
+namespace Axvemi.Inventories
 {
     public class InventoryItem
     {

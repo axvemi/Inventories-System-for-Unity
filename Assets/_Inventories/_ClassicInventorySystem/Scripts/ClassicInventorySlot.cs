@@ -1,6 +1,6 @@
 using System;
 
-namespace Axvemi.ClassicInventory
+namespace Axvemi.Inventories.ClassicInventory
 {
     /// <summary>
     /// Exception thrown when its not possible to add an item to the inventory
@@ -15,7 +15,7 @@ namespace Axvemi.ClassicInventory
     /// <summary>
     /// Slot of the inventory. Contains a item, or nothing
     /// </summary>
-    public class InventorySlot
+    public class ClassicInventorySlot
     {
         private InventoryItemSO item = null;
         public InventoryItemSO Item { get => item; set => item = value; }
@@ -50,7 +50,7 @@ namespace Axvemi.ClassicInventory
         /// </summary>
         /// <param name="slot">Target slot to where move the item</param>
         /// <param name="ammount">Ammount to move to the slot</param>
-        public void MoveItemToSlot(InventorySlot slot, int ammount) {
+        public void MoveItemToSlot(ClassicInventorySlot slot, int ammount) {
             if(slot == null) {
                 throw new FailedToMoveItemToSlotException();
             }
@@ -93,7 +93,7 @@ namespace Axvemi.ClassicInventory
         /// </summary>
         /// <param name="item">Item to add</param>
         /// <exception cref="FailedToAddItemToInventoryException">If the item cannot be added this exception gets thrown</exception>
-        public static void AddItem(Inventory<InventorySlot> inventory, InventoryItemSO item) {
+        public static void AddItem(Inventory<ClassicInventorySlot> inventory, InventoryItemSO item) {
             try {
                 GetInventorySlotToAddItem(inventory, item).StoreItem(item, 1);
             }
@@ -110,8 +110,8 @@ namespace Axvemi.ClassicInventory
         /// </summary>
         /// <param name="item">Item to store</param>
         /// <returns>Inventory slot that meets the parameters. Null if none</returns>
-        private static InventorySlot GetInventorySlotToAddItem(Inventory<InventorySlot> inventory, InventoryItemSO item) {
-            InventorySlot slot = null;
+        private static ClassicInventorySlot GetInventorySlotToAddItem(Inventory<ClassicInventorySlot> inventory, InventoryItemSO item) {
+            ClassicInventorySlot slot = null;
             //Can stack unlimited ammount
             if(item.MaxAmmount == 0){
                 slot = inventory.Slots.Find(s => (s.Item == item));

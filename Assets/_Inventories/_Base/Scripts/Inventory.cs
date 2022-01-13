@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Axvemi.ClassicInventory
+namespace Axvemi.Inventories
 {
     /// <summary>
     /// Composed of a list of slots.
