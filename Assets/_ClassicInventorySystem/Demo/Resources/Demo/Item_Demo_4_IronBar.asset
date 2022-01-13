@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49734c26705fbb74b86b4a9f744b51b1, type: 3}
+  m_Script: {fileID: 11500000, guid: c8e797484c9b6661b867afd5928dc4bd, type: 3}
   m_Name: Item_Demo_4_IronBar
   m_EditorClassIdentifier: 
   Id: 4
   MaxAmmount: 30
-  Sprite: {fileID: 3613971023037790393, guid: 89125a75d9bc42b659b164b4512fff9f, type: 3}
+  Sprite: {fileID: -936452688447702268, guid: 89125a75d9bc42b659b164b4512fff9f, type: 3}

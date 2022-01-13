@@ -5,8 +5,8 @@ namespace Axvemi.ClassicInventory
 {
     public class InventoryUIController : MonoBehaviour
     {
-        private Inventory inventory = null;
-        public Inventory Inventory { get => inventory; set => inventory = value; }
+        private Inventory<InventorySlot> inventory = null;
+        public Inventory<InventorySlot> Inventory { get => inventory; set => inventory = value; }
 
         [SerializeField] private GameObject inventorySlotPrefab = null;
         [Header("UI")]

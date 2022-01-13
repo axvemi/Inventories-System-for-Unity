@@ -1,8 +1,12 @@
 using System;
-using UnityEngine;
 
 namespace Axvemi.ClassicInventory
 {
+    /// <summary>
+    /// Exception thrown when its not possible to add an item to the inventory
+    /// </summary>
+    public class FailedToAddItemToInventoryException : Exception { }
+
     /// <summary>
     /// Exception thrown when its not possible to move an item
     /// </summary>
@@ -13,20 +17,21 @@ namespace Axvemi.ClassicInventory
     /// </summary>
     public class InventorySlot
     {
-        private InventoryItem item = null;
-        public InventoryItem Item { get => item; set => item = value; }
+        private InventoryItemSO item = null;
+        public InventoryItemSO Item { get => item; set => item = value; }
+
         private int ammount = 0;
         public int Ammount { get => ammount; set => ammount = value; }
 
-        public Action<InventoryItem> onSlotItemUpdated;
+        public Action<InventoryItemSO> onSlotItemUpdated;
 
-
+        #region ITEM STORAGE
         /// <summary>
         /// Adds the item to this slot
         /// If the item is null set reset slot
         /// </summary>
         /// <exception cref="FailedToMoveItemToSlotException">If its not the correct Item to add this exception gets raised</exception>
-        public void StoreItem(InventoryItem item, int ammount = 1) {
+        public void StoreItem(InventoryItemSO item, int ammount = 1) {
             //If the item is not the same, or item is not null (reset) throw exception
             if((this.item != item && item != null) && this.item != null) {
                 throw new FailedToMoveItemToSlotException();
@@ -77,6 +82,51 @@ namespace Axvemi.ClassicInventory
                 throw new FailedToMoveItemToSlotException();
             }
         }
+
+        #endregion
+
+        #region INVENTORY STORAGE
+        /// <summary>
+        /// Try to add an item to the inventory
+        /// First add it to one where already has one of its type
+        /// If it cannot or doesn't exists search for an empty one
+        /// </summary>
+        /// <param name="item">Item to add</param>
+        /// <exception cref="FailedToAddItemToInventoryException">If the item cannot be added this exception gets thrown</exception>
+        public static void AddItem(Inventory<InventorySlot> inventory, InventoryItemSO item) {
+            try {
+                GetInventorySlotToAddItem(inventory, item).StoreItem(item, 1);
+            }
+            catch {
+                throw new FailedToAddItemToInventoryException();
+            }
+        }
+
+        /// <summary>
+        /// Gets the first slot that meets the parameters.
+        /// First check if there is already one with this type and available ammount
+        /// If not, search for an empty one
+        /// Else, return null
+        /// </summary>
+        /// <param name="item">Item to store</param>
+        /// <returns>Inventory slot that meets the parameters. Null if none</returns>
+        private static InventorySlot GetInventorySlotToAddItem(Inventory<InventorySlot> inventory, InventoryItemSO item) {
+            InventorySlot slot = null;
+            //Can stack unlimited ammount
+            if(item.MaxAmmount == 0){
+                slot = inventory.Slots.Find(s => (s.Item == item));
+            }
+            else{
+                slot = inventory.Slots.Find(s => (s.Item == item) && (s.Ammount < item.MaxAmmount));
+            }
+            //If the item is new or no stack found return a new slot
+            if(slot == null){
+                slot = inventory.Slots.Find(s => (s.Item == null));
+            }
+
+            return slot;
+        }
+        #endregion
 
         public override string ToString()
         {

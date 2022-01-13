@@ -1,5 +1,4 @@
 using UnityEngine;
-using QFSW.QC;
 using System.Linq;
 
 namespace Axvemi.ClassicInventory.Demo
@@ -9,22 +8,26 @@ namespace Axvemi.ClassicInventory.Demo
     /// </summary>
     public class InventoryManagerDemo : MonoBehaviour
     {
-        public Inventory Inventory = null;
+        public Inventory<InventorySlot> Inventory = null;
 
         [Header("INVENTORY")]
         [SerializeField] private int inventorySlotAmmount = 0;
-        private InventoryItem[] gameItems = null;
+        private InventoryItemSO[] gameItems = null;
 
         [Header("UI")]
         [SerializeField] private InventoryUIController inventoryUIController = null;
 
         private void Awake() {
-            Inventory = new Inventory(inventorySlotAmmount);
+            Inventory = new Inventory<InventorySlot>();
+            for (int i = 0; i < inventorySlotAmmount; i++) {
+                Inventory.Slots.Add(new InventorySlot());
+            }
+
             inventoryUIController.Inventory = this.Inventory;
         }
 
         private void Start() {
-            gameItems = Resources.LoadAll("Demo", typeof(InventoryItem)).Cast<InventoryItem>().ToArray();
+            gameItems = Resources.LoadAll("Demo", typeof(InventoryItemSO)).Cast<InventoryItemSO>().ToArray();
 
             //ADD DEMO ITEMS
             AddItemToInventory("0");
@@ -35,12 +38,12 @@ namespace Axvemi.ClassicInventory.Demo
             AddItemToInventory("4", 60);
         }
 
-        public void AddItemToInventory(InventoryItem item){
-            this.Inventory.AddItem(item);
+        public void AddItemToInventory(InventoryItemSO item){
+            InventorySlot.AddItem(this.Inventory, item);
         }
 
         public void AddItemToInventory(string itemID, int ammount = 1){
-            InventoryItem item = gameItems.Single(x => x.Id == itemID);
+            InventoryItemSO item = gameItems.Single(x => x.Id == itemID);
             for (int i = 0; i < ammount; i++) {
                 AddItemToInventory(item);    
             }

@@ -25,7 +25,7 @@ namespace Axvemi.ClassicInventory
         /// If the item is null show nothing
         /// </summary>
         /// <param name="item"></param>
-        private void OnCursorSlotItemUpdated(InventoryItem item){
+        private void OnCursorSlotItemUpdated(InventoryItemSO item){
             if(item == null){
                 inventoryCursorUIParent.SetActive(false);
             }
